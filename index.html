@@ -9,7 +9,7 @@
   var params = new URLSearchParams(window.location.search);
 var id = params.get("id");
 var destino = "https://www.instagram.com/golff.evolution/";
-fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfRYJ-kX4ZTnUgGrFAvD1e4bXTN2dxhJIwIEnrWHMRhgh0rOSXPpecRna6jaMYolmubWJ_CnfgM6bg/pub?output=csv&t=" + Date.now(), {cache: "no-store"})
+fetch("https://docs.google.com/spreadsheets/d/1m80AH7WD3cFYSNw4pNIfosQS4nyqhfOWFej2WKyzxO8/gviz/tq?tqx=out:csv&gid=0&t=" + Date.now(), {cache: "no-store"})
   .then(function(r){return r.text();})
 .then(function(text){
   var rows = text.split("\n");
