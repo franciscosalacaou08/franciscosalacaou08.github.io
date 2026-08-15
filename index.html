@@ -1,30 +1,12 @@
 <!DOCTYPE html>
-  <html>
-  <head>
-  <meta charset="utf-8">
-  <title>Redirigiendo...</title>
-  </head>
-  <body>
-  <script>
+<script>
   var params = new URLSearchParams(window.location.search);
-var id = params.get("id");
-var destino = "https://www.instagram.com/golff.evolution/";
-fetch("https://docs.google.com/spreadsheets/d/1m80AH7WD3cFYSNw4pNIfosQS4nyqhfOWFej2WKyzxO8/gviz/tq?tqx=out:csv&gid=0&t=" + Date.now(), {cache: "no-store"})
-  .then(function(r){return r.text();})
-.then(function(text){
-  var rows = text.split("\n");
-for (var i=1;i<rows.length;i++){
-var cols = rows[i].split(",");
-var rid = cols[0].replace(/"/g,"").trim();
-if (rid === id){
-var link = cols[1].replace(/"/g,"").trim();
-  if (link){ destino = link; }
-  break;
-}
-}
-window.location.href = destino;
-})
-.catch(function(){ window.location.href = destino; });
+  var id = params.get("id");
+  var destino = "https://www.instagram.com/golff.evolution/";
+  var api = "https://script.google.com/macros/s/AKfycbxlwmruqdRHG_ivkq8T-rzt_iVnBvqcClyz6vS8xvC7UR1gwIKNGapPePrMcY36REY/exec?id=" + encodeURIComponent(id);
+  fetch(api).then(function(r){return r.json();}).then(function(data){
+    if (data && data.destino) { destino = data.destino; }
+    window.location.href = destino;
+  }).catch(function(){ window.location.href = destino; });
+  
 </script>
-  </body>
-  </html>
