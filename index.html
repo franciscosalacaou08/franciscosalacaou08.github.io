@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="utf-8">
+  <title>Redirigiendo...</title>
+  </head>
+  <body>
+  <script>
+  var params = new URLSearchParams(window.location.search);
+var id = params.get("id");
+var destino = "https://www.instagram.com/golff.evolution/";
+fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfRYJ-kX4ZTnUgGrFAvD1e4bXTN2dxhJIwIEnrWHMRhgh0rOSXPpecRna6jaMYolmubWJ_CnfgM6bg/pub?output=csv")
+  .then(function(r){return r.text();})
+.then(function(text){
+  var rows = text.split("\n");
+for (var i=1;i<rows.length;i++){
+var cols = rows[i].split(",");
+var rid = cols[0].replace(/"/g,"").trim();
+if (rid === id){
+var link = cols[1].replace(/"/g,"").trim();
+  if (link){ destino = link; }
+  break;
+}
+}
+window.location.href = destino;
+})
+.catch(function(){ window.location.href = destino; });
+</script>
+  </body>
+  </html>
